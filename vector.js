@@ -3,6 +3,8 @@ class Vector {
     constructor(x, y) {
 		this.x = x;
 		this.y = y;
+		this.rad = rad;
+		
 		
     }
 	
@@ -12,12 +14,18 @@ class Vector {
 		return this;
 	}
 	
-	// Functions For HW
-	subVector(vec) { // subtracting vectors
-		
+
+	subVector(vec) { 
+		this.x -= vec.x;
+		this.y -= vec.y;
+		return this;
 	}
 	
-	scale(s) { // scale vectors
+	sclVector(s) { 
+		
+		
+//		this.x * s = vec.x
+//		this.y * s = vec.y
 		
 	}
 	

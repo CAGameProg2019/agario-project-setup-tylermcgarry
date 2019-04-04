@@ -3,19 +3,35 @@ let c = canvas.getContext('2d');
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-let Vector
-let xVel = 0.5;
-let yVel = 0.2;
-let xLoc = 60 // x location
-let yLoc = 60 // y location
-let rad = 50; // Circle radius
-let pos = new Vector(xLoc, yLoc); // Starting Location
-let vel = new Vector(xVel, yVel); // Velocity
-//let s = 10;
+
+let colors = [
+  	'#324001', 
+	'#667302', 
+	'#F2B33D', 
+	'#BF4124', 
+	'#730202'	
+];
+
+function randomColor () {
+	let index = Math.floor(Math.random()*colors.length)
+	return colors[index];
+}
+
+let pos = new Vector(60, 60); // Starting Location
+let vel = new Vector(1, 1); // Velocity
+vel.scale(2);
+
+
+
+let foods = [];
+
 
 function init() {
+	let x = Math.random() * canvas.width;
+	let y = Math.random() * canvas.height;
 	
-	console.log(pos.toString());
+	let food = new Food(x, y, 50, randomColor())
+	foods.push(food)
 	update();
 }
 
@@ -24,18 +40,17 @@ function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	
 	
-	pos.scl(2)
-	
-	
-	c.beginPath();
-	c.arc(pos.x, pos.y, rad, 0, Math.PI*2, false);
-	c.stroke();
+	foods[0].draw(c);
 	
 	
 	requestAnimationFrame(update);
 }
 
 
+
+
+
 window.addEventListener('load', function(event) {
 	init();
+	
 });

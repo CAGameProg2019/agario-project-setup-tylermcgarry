@@ -22,7 +22,7 @@ class Vector {
 	scale(s) { // Scale vector location
 		this.x *= s
 		this.y *= s
-
+		return this;
 	}
 
 	toString() {

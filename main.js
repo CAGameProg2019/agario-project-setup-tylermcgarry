@@ -24,7 +24,7 @@ function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	
 	
-	vel.scl(2)
+	pos.scl(2)
 	
 	
 	c.beginPath();

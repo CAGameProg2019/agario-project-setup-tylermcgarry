@@ -1,36 +1,33 @@
 class Vector {
     
-    constructor(x, y) {
+		constructor(x, y) {
 		this.x = x;
 		this.y = y;
-		this.rad = rad;
-		
-		
-    }
-	
-	addVector(vec) {
+
+	}
+
+	addVector(vec) { // Add vector location
 		this.x += vec.x;
 		this.y += vec.y;
 		return this;
 	}
-	
 
-	subVector(vec) { 
+
+	subVector(vec) { // Subtract vector location
 		this.x -= vec.x;
 		this.y -= vec.y;
 		return this;
 	}
-	
-	sclVector(s) { 
-		
-		
-//		this.x * s = vec.x
-//		this.y * s = vec.y
-		
+
+	scale(s) { // Scale vector location
+		this.x *= s
+		this.y *= s
+
 	}
-	
+
 	toString() {
 		return '<'+ this.x+', '+this.y+'>';
 	}
+
 
 }

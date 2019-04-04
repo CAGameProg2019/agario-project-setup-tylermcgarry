@@ -30,20 +30,21 @@ function init() {
 	let x = Math.random() * canvas.width;
 	let y = Math.random() * canvas.height;
 	
-	let food = new Food(x, y, 50, randomColor())
+	let food = new Food(x, y, 20, randomColor())
 	foods.push(food)
 	update();
 }
 
 function update() {
-	
+	requestAnimationFrame(update);
 	c.clearRect(0, 0, canvas.width, canvas.height);
-	
 	
 	foods[0].draw(c);
 	
+
 	
-	requestAnimationFrame(update);
+	
+	
 }
 
 

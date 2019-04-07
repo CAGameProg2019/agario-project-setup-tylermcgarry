@@ -43,6 +43,7 @@ function init() {
 function update() {
 	requestAnimationFrame(update);
 	c.clearRect(0, 0, canvas.width, canvas.height);
+	
 	for (var i = 0; i < foods.length; i++)
 	foods[i].draw(c);
 	

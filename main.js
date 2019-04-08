@@ -18,19 +18,28 @@ let colorsArct = [
 	'#8C814A',
 	'#595231'
 ];
-
+let colorsSummer = [
+	'#029CAF',
+	'#E4D499', 
+	'#FFC118',
+	'#EF7C18',
+	'#E22450'
+];
 
 
 
 function colorCore () {
-	let index = Math.floor(Math.random()*colors.length)
-	return colors[index];
+	let index = Math.floor(Math.random()*colorsCore.length)
+	return colorsCore[index];
 }
 function colorArct () {
-	let index = Math.floor(Math.random()*colors2.length)
-	return colors2[index];
+	let index = Math.floor(Math.random()*colorsArct.length)
+	return colorsArct[index];
 }
-
+function colorSummer () {
+	let index = Math.floor(Math.random()*colorsSummer.length)
+	return colorsSummer[index];
+}
 
 
 let foodNum = 200;
@@ -39,15 +48,14 @@ let foods = [];
 
 function init() {
 	foods = [];
-		for (var i = 0; i < foodNum; i++) {
+	for (var i = 0; i < foodNum; i++) {
 		let radius = 15
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;
-		let food = new Food(x, y, radius, colorArct())
-		foods.push(food)
-		update();
+		let food = new Food(x, y, radius, colorCore());
+		foods.push(food);
 	}
-	
+	update();
 }
 
 function update() {

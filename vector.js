@@ -29,7 +29,7 @@ class Vector {
 		return '<'+ this.x+', '+this.y+'>';
 	}
 	
-	Print() {
+	print() {
 		console.log(this.toString());
 	}
 

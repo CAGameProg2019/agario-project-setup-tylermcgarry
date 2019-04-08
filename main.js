@@ -1,13 +1,34 @@
 let canvas = document.getElementById('main');
 let c = canvas.getContext('2d');
 
-canvas.width = innerWidth -10;
-canvas.height = innerHeight -10;
+canvas.width = innerWidth - 4;
+canvas.height = innerHeight - 4;
 
-let foodNum = 100;
+// Event Listiners
+window.addEventListener('load', function() {
+	init();
+	
+	window.addEventListener('mousemove', function(event) {
+		mpos.x = event.clientX - canvas.offsetLeft;
+		mpos.y = event.clientY - canvas.offsetTop;
+	});
+	
+});
+
+window.addEventListener('resize', function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+});
+
+// Global Varables
+let foodNum = 50;
 let player;
 let foods = [];
 let mpos;
+let x;
+let y;
+let radius;
 
 // Color Arrays
 let colorsCore = [
@@ -31,7 +52,7 @@ let colorsSummer = [
 	'#EF7C18',
 	'#E22450'
 ];
-let colorsWilderness = [
+let colorsWild = [
 	'#C1D1F2',
 	'#5175A5', 
 	'#6F721E',
@@ -52,9 +73,9 @@ function colorSummer () {
 	let index = Math.floor(Math.random()*colorsSummer.length)
 	return colorsSummer[index];
 }
-function colorWilderness () {
-	let index = Math.floor(Math.random()*colorsWilderness.length)
-	return colorsWilderness[index];
+function colorWild () {
+	let index = Math.floor(Math.random()*colorsWild.length)
+	return colorsWild[index];
 }
 
 
@@ -74,54 +95,51 @@ function colorWilderness () {
 
 function init() {
 	
+	let radius = 30;
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	
-	player = new Player(canvas.width/2, canvas.height/2, 40, colorWilderness());
-	
+	player = new Player(undefined, undefined, radius, colorArct());
 	
 	for (var i = 0; i < foodNum; i++) {
-		let radius = 15
+		let radius = 10
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;
 		let food = new Food(x, y, radius, colorCore());
 		foods.push(food);
+		console.log(food);
 	}
+
+	
 	update();
 }
 
 function update() {
-	
+	let radius = 30
 	c.clearRect(0, 0, canvas.width, canvas.height);
+	requestAnimationFrame(update);
 	
+
 	
 	for (var i = 0; i < foods.length; i++){
 		foods[i].draw(c);
+		
 	}
 	
+	player.x = mpos.x;
+	player.y = mpos.y;
 	player.draw(c);
 	
 	
 
-	requestAnimationFrame(update);
+	
 }
 
 
 
-
-
-window.addEventListener('load', function() {
-	init();
+function getDistance (x1, x2, y1, y2) {
+	let xDistance = x2 - x1;
+	let yDistance = y2 - y1;
 	
-	window.addEventListener('mousemove', function(event) {
-		mpos.x = event.clientX - canvas.offsetLeft;
-		mpos.y = event.clientY - canvas.offsetTop;
-		console.log(mpos.toString());
-	});
-	
-});
+	return Math.sqrt (Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
 
-window.addEventListener('resize', function() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  init();
-});
+

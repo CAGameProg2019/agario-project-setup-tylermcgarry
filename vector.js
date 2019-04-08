@@ -3,7 +3,7 @@ class Vector {
 		constructor(x, y) {
 		this.x = x;
 		this.y = y;
-
+		
 	}
 
 	addVector(vec) { // Add vector location
@@ -32,6 +32,8 @@ class Vector {
 	print() {
 		console.log(this.toString());
 	}
+	
+	
 
 
 }

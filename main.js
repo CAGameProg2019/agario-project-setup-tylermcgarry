@@ -4,36 +4,46 @@ let c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-let colors = [
+let colorsCore = [
   	'#ED553B', 
 	'#F2B134', 
 	'#47AB6C', 
 	'#0894A1', 
 	'#112F41'	
 ];
-let foodNum = 100;
-function randomColor () {
+let colorsArct = [
+	'#87A5BF',
+	'#ADC4D8', 
+	'#A5A056',
+	'#8C814A',
+	'#595231'
+];
+
+
+
+
+function colorCore () {
 	let index = Math.floor(Math.random()*colors.length)
 	return colors[index];
 }
+function colorArct () {
+	let index = Math.floor(Math.random()*colors2.length)
+	return colors2[index];
+}
 
-//let pos = new Vector(60, 60); // Starting Location
-//let vel = new Vector(1, 1); // Velocity
-//vel.scale(2);
 
 
-
+let foodNum = 200;
 let foods = [];
 
 
 function init() {
 	foods = [];
 		for (var i = 0; i < foodNum; i++) {
-			let radius = 10
+		let radius = 15
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;
-
-		let food = new Food(x, y, radius, randomColor())
+		let food = new Food(x, y, radius, colorArct())
 		foods.push(food)
 		update();
 	}

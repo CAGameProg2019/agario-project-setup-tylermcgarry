@@ -1,8 +1,8 @@
 let canvas = document.getElementById('main');
 let c = canvas.getContext('2d');
 
-canvas.width = innerWidth - 4;
-canvas.height = innerHeight - 4;
+canvas.width = innerWidth - 10;
+canvas.height = innerHeight - 10
 
 // Event Listiners
 window.addEventListener('load', function() {
@@ -22,7 +22,7 @@ window.addEventListener('resize', function() {
 });
 
 // Global Varables
-let foodNum = 50;
+let foodNum = 100;
 let player;
 let foods = [];
 let mpos;
@@ -100,29 +100,29 @@ function init() {
 	player = new Player(undefined, undefined, radius, colorArct());
 	
 	for (var i = 0; i < foodNum; i++) {
-		let radius = 10
+		let radius = 10;
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;
-		let food = new Food(x, y, radius, colorCore());
-		foods.push(food);
-		console.log(food);
+		let food = new Food(x, y, radius, colorSummer());
+		foods.push(food);	
 	}
-
 	
 	update();
 }
 
 function update() {
-	let radius = 30
+	
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
-
+	console.log(foods);
 	
 	for (var i = 0; i < foods.length; i++){
 		foods[i].draw(c);
-		
 	}
+	
+	
+
 	
 	player.x = mpos.x;
 	player.y = mpos.y;

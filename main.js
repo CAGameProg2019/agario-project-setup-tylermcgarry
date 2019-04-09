@@ -14,7 +14,6 @@ window.addEventListener('load', function() {
 	});
 	
 });
-
 window.addEventListener('resize', function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -59,6 +58,13 @@ let colorsWild = [
 	'#A57C4A',
 	'#A54A29'
 ];
+let colorsCoast = [
+	'#A3D9BF',
+	'#D6D9C5', 
+	'#A3A649',
+	'#A67F38',
+	'#D9B791'
+];
 
 // Random Color Functions
 function colorCore () {
@@ -76,6 +82,10 @@ function colorSummer () {
 function colorWild () {
 	let index = Math.floor(Math.random()*colorsWild.length)
 	return colorsWild[index];
+}
+function colorCoast () {
+	let index = Math.floor(Math.random()*colorsCoast.length)
+	return colorsCoast[index];
 }
 
 
@@ -97,13 +107,13 @@ function init() {
 	
 	let radius = 30;
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	player = new Player(undefined, undefined, radius, colorArct());
+	player = new Player(undefined, undefined, radius, colorCore());
 	
-	for (var i = 0; i < foodNum; i++) {
+	for (var i = 0; i < foodNum; i++) { 
 		let radius = 10;
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;
-		let food = new Food(x, y, radius, colorSummer());
+		let food = new Food(x, y, radius, colorCoast());
 		foods.push(food);	
 	}
 	
@@ -115,21 +125,16 @@ function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
-	console.log(foods);
 	
 	for (var i = 0; i < foods.length; i++){
 		foods[i].draw(c);
 	}
 	
 	
-
-	
 	player.x = mpos.x;
 	player.y = mpos.y;
 	player.draw(c);
 	
-	
-
 	
 }
 

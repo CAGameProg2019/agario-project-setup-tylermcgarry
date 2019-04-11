@@ -11,6 +11,7 @@ window.addEventListener('load', function() {
 	window.addEventListener('mousemove', function(event) {
 		mpos.x = event.clientX - canvas.offsetLeft;
 		mpos.y = event.clientY - canvas.offsetTop;
+		
 	});
 	
 });
@@ -20,6 +21,8 @@ window.addEventListener('resize', function() {
 
 });
 
+
+
 // Global Varables
 let foodNum = 100;
 let player;
@@ -27,6 +30,7 @@ let foods = [];
 let mpos;
 let x;
 let y;
+
 let radius;
 
 // Color Arrays
@@ -109,7 +113,7 @@ function init() {
 	mpos = new Vector(canvas.width/2, canvas.height/2);
 	player = new Player(undefined, undefined, radius, colorCore());
 	
-	for (var i = 0; i < foodNum; i++) { 
+for (var i = 0; i < foodNum; i++) { 
 		let radius = 10;
 		let x = Math.random() * canvas.width;
 		let y = Math.random() * canvas.height;

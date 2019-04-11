@@ -15,6 +15,30 @@ class Food extends Vector {
 		
 	}
 	
-
+	intersects(food) {
+		let distance = this.dist(food);
+		if (distance <= this.radius + food.radius) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	// Growing with 
+	get mass() {
+		return Math.PI * this.radius * this.radius;
+	}
+	
+	set mass(newmass) {
+		this.radius = Math.sqrt(newmass/Math.PI);
+	}
+	
+	addMass (m) {
+		this.mass += m;
+		
+	}
+	
 }
 Object.assign(Food, Vector);
+
+

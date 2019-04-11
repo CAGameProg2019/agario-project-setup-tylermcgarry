@@ -23,15 +23,17 @@ window.addEventListener('resize', function() {
 
 
 
-// Global Varables
-let foodNum = 100;
+
+// Global Varables/Constants
+const FOOD_COUNT = 150;
 let player;
 let foods = [];
 let mpos;
 let x;
 let y;
-
 let radius;
+let playRad = 30; 
+
 
 // Color Arrays
 let colorsCore = [
@@ -95,60 +97,72 @@ function colorCoast () {
 
 
 
-//Choose Color Array
-//let colorType = prompt('Enter a Number 1-3');
-//if (colorType == 1) {
-//	arrType = colorCore;111
-//} if (colorType == 2) {
-//	arrType = colorArct;33
-//} else {
-//	arrType = colorSummer;
-//}
+
+
+
+	
+function foodGen() {
+	
+			let radius = 10; // Food Radius
+			let x = Math.random() * canvas.width;
+			let y = Math.random() * canvas.height;
+			let food = new Food(x, y, radius, colorCoast());
+			foods.push(food);
+		}
 
 
 
 function init() {
 	
-	let radius = 30;
+	radius = 30;
+	
 	mpos = new Vector(canvas.width/2, canvas.height/2);
 	player = new Player(undefined, undefined, radius, colorCore());
 	
-for (var i = 0; i < foodNum; i++) { 
-		let radius = 10;
-		let x = Math.random() * canvas.width;
-		let y = Math.random() * canvas.height;
-		let food = new Food(x, y, radius, colorCoast());
-		foods.push(food);	
+	for (var i = 0; i < FOOD_COUNT; i++) { 
+		foodGen();
 	}
 	
 	update();
+	
 }
 
 function update() {
-	
+	// Refresh 
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
-	
+	// Drawing/removing Food
 	for (var i = 0; i < foods.length; i++){
-		foods[i].draw(c);
+		
+		let eaten = player.intersects(foods[i]);
+		
+		if (!eaten) {
+				foods[i].draw(c);	
+		} else {
+			if (player.mass < 500000) {
+				player.addMass(foods[i].mass);
+			}
+			foods.splice(i, 1);
+			i--;
+		}
+	}
+	while (foods.length < FOOD_COUNT) {
+		foodGen();
 	}
 	
-	
+	// Mouse position
 	player.x = mpos.x;
 	player.y = mpos.y;
 	player.draw(c);
 	
 	
-}
-
-
-
-function getDistance (x1, x2, y1, y2) {
-	let xDistance = x2 - x1;
-	let yDistance = y2 - y1;
 	
-	return Math.sqrt (Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+	
 }
+
+
+
+
 
 

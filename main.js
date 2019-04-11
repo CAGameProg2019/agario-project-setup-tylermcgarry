@@ -23,7 +23,6 @@ window.addEventListener('resize', function() {
 
 
 
-
 // Global Varables/Constants
 const FOOD_COUNT = 150;
 let player;
@@ -32,7 +31,7 @@ let mpos;
 let x;
 let y;
 let radius;
-let playRad = 30; 
+
 
 
 // Color Arrays
@@ -96,10 +95,6 @@ function colorCoast () {
 
 
 
-
-
-
-
 	
 function foodGen() {
 	
@@ -132,11 +127,11 @@ function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
-	// Drawing/removing Food
+	// Food/Player Interaction
 	for (var i = 0; i < foods.length; i++){
-		
+	
+	// Food/Player Contact/Growth
 		let eaten = player.intersects(foods[i]);
-		
 		if (!eaten) {
 				foods[i].draw(c);	
 		} else {
@@ -147,11 +142,12 @@ function update() {
 			i--;
 		}
 	}
+	// Food Regeneration
 	while (foods.length < FOOD_COUNT) {
 		foodGen();
 	}
 	
-	// Mouse position
+	// Mouse position to Player position
 	player.x = mpos.x;
 	player.y = mpos.y;
 	player.draw(c);

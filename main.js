@@ -1,5 +1,5 @@
 let canvas = document.getElementById('main');
-let c = canvas.getContext('2d');
+const c = canvas.getContext('2d');
 
 canvas.width = innerWidth - 10;
 canvas.height = innerHeight - 10
@@ -71,7 +71,7 @@ let colorsCoast = [
 	'#D9B791'
 ];
 
-// Random Color Functions
+// Random Color Generators
 function colorCore () {
 	let index = Math.floor(Math.random()*colorsCore.length)
 	return colorsCore[index];
@@ -93,17 +93,15 @@ function colorCoast () {
 	return colorsCoast[index];
 }
 
-
-
 	
 function foodGen() {
 	
-			let radius = 10; // Food Radius
-			let x = Math.random() * canvas.width;
-			let y = Math.random() * canvas.height;
-			let food = new Food(x, y, radius, colorCoast());
-			foods.push(food);
-		}
+	let radius = 10; // Food Radius
+	let x = Math.random() * canvas.width;
+	let y = Math.random() * canvas.height;
+	let food = new Food(x, y, radius, colorCoast());
+	foods.push(food);
+}
 
 
 

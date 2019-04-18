@@ -31,6 +31,7 @@ let mpos;
 let x;
 let y;
 let radius;
+let	name = 'tyler';
 
 
 
@@ -104,13 +105,23 @@ function foodGen() {
 }
 
 
+	
 
 function init() {
 	
 	radius = 30;
+
+	function name() {
+		//console.log("test");	
+	
+	
+	}
+
+	
+	
 	
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	player = new Player(undefined, undefined, radius, colorCore());
+	player = new Player(undefined, undefined, radius, colorCore(), name());
 	
 	for (var i = 0; i < FOOD_COUNT; i++) { 
 		foodGen();
@@ -131,7 +142,7 @@ function update() {
 	// Food/Player Contact/Growth
 		let eaten = player.intersects(foods[i]);
 		if (!eaten) {
-				foods[i].draw(c);	
+				foods[i].drawFood(c);	
 		} else {
 			if (player.mass < 500000) {
 				player.addMass(foods[i].mass);
@@ -145,7 +156,7 @@ function update() {
 		foodGen();
 	}
 	
-	// Mouse position to Player position
+	// Player position to mouse position
 	player.x = mpos.x;
 	player.y = mpos.y;
 	player.draw(c);

@@ -31,6 +31,14 @@ class Vector {
 		return Math.sqrt(x*x + y*y);
 	}
 	
+	magnitude() {
+		return Math.sqrt(this.x*this.x + this.y*this.y);
+	}
+	
+	toDirVEC() {
+		this.scale(1/this.magnitude());
+	}
+	
 	
 	toString() {
 		return '<'+ this.x+', '+this.y+'>';

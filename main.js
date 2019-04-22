@@ -31,8 +31,8 @@ let mpos;
 let x;
 let y;
 let radius;
-let	name = 'tyler';
-
+let name;
+let stroke = 'black';
 
 
 // Color Arrays
@@ -109,19 +109,15 @@ function foodGen() {
 
 function init() {
 	
-	radius = 30;
-
-	function name() {
-		//console.log("test");	
-	
-	
-	}
+	radius = 20;
+	let name = prompt('Enter Your Name: ');
+	//let stroke = colorsSummerdark[colorSummer.indexOf(colorSummer)];
 
 	
 	
 	
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	player = new Player(undefined, undefined, radius, colorCore(), name());
+	player = new Player(null, null, radius, colorSummer(), colorSummer(), name, 5);
 	
 	for (var i = 0; i < FOOD_COUNT; i++) { 
 		foodGen();
@@ -132,9 +128,11 @@ function init() {
 }
 
 function update() {
+
 	// Refresh 
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
+	
 	
 	// Food/Player Interaction
 	for (var i = 0; i < foods.length; i++){
@@ -142,7 +140,7 @@ function update() {
 	// Food/Player Contact/Growth
 		let eaten = player.intersects(foods[i]);
 		if (!eaten) {
-				foods[i].drawFood(c);	
+				foods[i].draw(c);	
 		} else {
 			if (player.mass < 500000) {
 				player.addMass(foods[i].mass);
@@ -151,17 +149,19 @@ function update() {
 			i--;
 		}
 	}
+	
+
+	
 	// Food Regeneration
 	while (foods.length < FOOD_COUNT) {
 		foodGen();
 	}
 	
-	// Player position to mouse position
-	player.x = mpos.x;
-	player.y = mpos.y;
+	// Player position + mouse position
+	player.update(mpos);
+	
 	player.draw(c);
-	
-	
+
 	
 	
 }

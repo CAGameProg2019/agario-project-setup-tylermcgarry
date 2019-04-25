@@ -1,10 +1,11 @@
 class Player extends Food {
     
-    constructor(x, y, radius, color, stroke, name, maxSpeed) {
+    constructor(x, y, radius, color, stroke, name, maxSpeed, score) {
 		super(x, y, radius, color);
 		this.stroke = stroke;
 		this.name = name;
 		this.maxSpeed = maxSpeed;
+		this.score = score;
 		
     }
 	
@@ -33,7 +34,8 @@ class Player extends Food {
 	}
 	
 	
-	draw(c, name) {
+	draw(c, name, score) {
+		let fontSize
 		c.lineWidth = this.radius*0.075;
 		c.strokeStyle = this.stroke;
 		super.draw(c);
@@ -42,12 +44,21 @@ class Player extends Food {
 		c.textAlign = 'center';
 		c.textBaseline = 'middle';
 		c.lineWidth = 0.03*this.radius;
-		let fontSize = Math.round(this.radius*0.33)
+		fontSize = Math.round(this.radius*0.33)
 		c.font = fontSize + 'px Monospace';
 		c.strokeStyle = '#000000';
-		c.strokeText(this.name, this.x, this.y);
-		c.fillText(this.name, this.x, this.y, );
+		c.strokeText(this.name, this.x, this.y-10);
+		c.fillText(this.name, this.x, this.y-10, );
 		
+		
+//		c.textAlign = 'center';
+//		c.textBaseline = 'middle';
+//		c.lineWidth = 0.03*this.radius;
+//		
+//		
+//		
+//		c.strokeText(this.score, this.x, this.y+10);
+//		c.fillText(this.score, this.x, this.y+10, );
 	}
 }
 Object.assign(Player, Food);

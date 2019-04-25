@@ -33,10 +33,13 @@ let y;
 let radius;
 let name;
 let stroke = 'black';
+let maxSpeed = 4;
+let score = 10;
+//console.log(mass());
 
 
 // Color Arrays
-let colorsCore = [
+ let colorsCore = [
   	'#ED553B', 
 	'#F2B134', 
 	'#47AB6C', 
@@ -100,24 +103,21 @@ function foodGen() {
 	let radius = 10; // Food Radius
 	let x = Math.random() * canvas.width;
 	let y = Math.random() * canvas.height;
-	let food = new Food(x, y, radius, colorCoast());
+	let food = new Food(x, y, radius, colorCore());
 	foods.push(food);
 }
 
 
 	
-
 function init() {
 	
 	radius = 20;
 	let name = prompt('Enter Your Name: ');
-	//let stroke = colorsSummerdark[colorSummer.indexOf(colorSummer)];
+	
 
 	
-	
-	
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	player = new Player(null, null, radius, colorSummer(), colorSummer(), name, 5);
+	player = new Player(null, null, radius, colorSummer(), colorSummer(), name, maxSpeed, score);
 	
 	for (var i = 0; i < FOOD_COUNT; i++) { 
 		foodGen();
@@ -157,7 +157,7 @@ function update() {
 		foodGen();
 	}
 	
-	// Player position + mouse position
+	// Player position + Mouse position
 	player.update(mpos);
 	
 	player.draw(c);

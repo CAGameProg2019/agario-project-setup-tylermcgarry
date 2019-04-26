@@ -34,12 +34,14 @@ let radius;
 let name;
 let stroke = 'black';
 let maxSpeed = 4;
-let score = 10;
-//console.log(mass());
+let score
+let dx
+
+
 
 
 // Color Arrays
- let colorsCore = [
+let colorsCore = [
   	'#ED553B', 
 	'#F2B134', 
 	'#47AB6C', 
@@ -103,7 +105,9 @@ function foodGen() {
 	let radius = 10; // Food Radius
 	let x = Math.random() * canvas.width;
 	let y = Math.random() * canvas.height;
-	let food = new Food(x, y, radius, colorCore());
+	let dx = Math.random()*2 -1;
+	let dy = Math.random()*2 -1;
+	let food = new Food(x, y, radius, colorCore(), dx, dy);
 	foods.push(food);
 }
 
@@ -115,9 +119,11 @@ function init() {
 	let name = prompt('Enter Your Name: ');
 	
 
+
 	
 	mpos = new Vector(canvas.width/2, canvas.height/2);
-	player = new Player(null, null, radius, colorSummer(), colorSummer(), name, maxSpeed, score);
+	player = new Player(null, null, radius, colorSummer(), colorSummer(), name, maxSpeed);
+	
 	
 	for (var i = 0; i < FOOD_COUNT; i++) { 
 		foodGen();
@@ -129,10 +135,16 @@ function init() {
 
 function update() {
 
+	
+
+	
+	
+	
 	// Refresh 
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
+	console.log(Math.floor(player.mass));
 	
 	// Food/Player Interaction
 	for (var i = 0; i < foods.length; i++){
@@ -140,15 +152,22 @@ function update() {
 	// Food/Player Contact/Growth
 		let eaten = player.intersects(foods[i]);
 		if (!eaten) {
-				foods[i].draw(c);	
-		} else {
-			if (player.mass < 500000) {
+				
+				foods[i].draw(c);
+		} else { //player.color = foods[i].color;
+			
+//			if (player.mass < 500000) {
+//				
 				player.addMass(foods[i].mass);
-			}
+//			}
+//			this.dx = -this.dx;
+//			this.dy = -this.dy;
 			foods.splice(i, 1);
 			i--;
 		}
+		console.log('running');
 	}
+	
 	
 
 	
@@ -157,10 +176,10 @@ function update() {
 		foodGen();
 	}
 	
-	// Player position + Mouse position
+	
 	player.update(mpos);
 	
-	player.draw(c);
+	player.playDraw(c);
 
 	
 	

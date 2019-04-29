@@ -144,7 +144,7 @@ function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	requestAnimationFrame(update);
 	
-	console.log(Math.floor(player.mass));
+	
 	
 	// Food/Player Interaction
 	for (var i = 0; i < foods.length; i++){
@@ -165,7 +165,7 @@ function update() {
 			foods.splice(i, 1);
 			i--;
 		}
-		console.log('running');
+
 	}
 	
 	

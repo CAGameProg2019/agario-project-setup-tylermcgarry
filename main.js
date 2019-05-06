@@ -157,7 +157,7 @@ function update() {
 		} else { //player.color = foods[i].color;
 			
 //			if (player.mass < 500000) {
-//				
+			
 				player.addMass(foods[i].mass);
 //			}
 //			this.dx = -this.dx;
